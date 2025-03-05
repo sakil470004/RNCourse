@@ -33,8 +33,8 @@ export default function App() {
 
           {
             courseGoals.map((goal, index) => (
-              <View style={{ padding: 20, borderBottomWidth: 1 }} key={index}>
-                <Text>{goal}</Text>
+              <View style={styles.goalItem}  key={index}>
+                <Text style={styles.goalText} >{goal}</Text>
               </View>
             ))
           }
@@ -70,7 +70,19 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   goalsContainer: {
-    flex: 3
+    flex: 5
+  },
+  goalItem: {
+    // padding: 20,
+    // borderBottomWidth: 1,
+    margin:8,
+    padding: 8,
+    borderRadius:6,
+    backgroundColor:'#5e0acc',
+  },
+  goalText: {
+    color: '#fff',
+    fontSize: 18
   }
 
 });

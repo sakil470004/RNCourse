@@ -9,7 +9,7 @@ export default function App() {
   }
   function addGoalHandler() {
     // console.log('Goal Added');
-    setCourseGoals(currentCourseGoals => [...currentCourseGoals, enteredGoal]);
+    setCourseGoals(currentCourseGoals => [...currentCourseGoals, {text:enteredGoal,key:Math.random().toString()}]);
     setEnteredGoal('');
   }
   return (
@@ -19,17 +19,16 @@ export default function App() {
         <Button title="ADD Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <Text style={{ padding: 20, fontSize: 24, color: '#ff0000' }} >List Of Goal ...</Text>
-        {/* <FlatList
-        data={courseGoals}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <View style={{ padding: 20, borderBottomWidth: 1 }}>
-            <Text>{item}</Text>
-          </View>
-        )}
-      /> */}
-        <ScrollView>
+        <Text style={{ padding: 20, fontSize: 24, color: '#ff0000' }} >List Of Goal ....</Text>
+        <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => (
+            <View style={styles.goalItem} >
+              <Text style={styles.goalText} >{itemData.item.text}</Text>
+            </View>
+          )}
+        />
+        {/* <ScrollView>
 
           {
             courseGoals.map((goal, index) => (
@@ -38,7 +37,7 @@ export default function App() {
               </View>
             ))
           }
-        </ScrollView>
+        </ScrollView> */}
       </View>
     </View>
   );
@@ -75,10 +74,10 @@ const styles = StyleSheet.create({
   goalItem: {
     // padding: 20,
     // borderBottomWidth: 1,
-    margin:8,
+    margin: 8,
     padding: 8,
-    borderRadius:6,
-    backgroundColor:'#5e0acc',
+    borderRadius: 6,
+    backgroundColor: '#5e0acc',
   },
   goalText: {
     color: '#fff',

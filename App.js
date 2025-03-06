@@ -4,25 +4,29 @@ import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
 
 export default function App() {
-  const [enteredGoal, setEnteredGoal] = useState('');
+
   const [courseGoals, setCourseGoals] = useState([]);
-  function goalInputHandler(enteredText) {
-    setEnteredGoal(enteredText);
-  }
-  function addGoalHandler() {
+  function addGoalHandler(enteredGoal) {
     // console.log('Goal Added');
-    setCourseGoals(currentCourseGoals => [...currentCourseGoals, {text:enteredGoal,key:Math.random().toString()}]);
-    setEnteredGoal('');
+    setCourseGoals(currentCourseGoals => [...currentCourseGoals, { text: enteredGoal, key: Math.random().toString() }]);
+  }
+  function deleteGoalHandler(id) {
+    setCourseGoals(currentCourseGoals => {
+      return currentCourseGoals.filter(goal => goal.key !== id)
+    })
   }
   return (
     <View style={styles.appContainer}>
-     <GoalInput addGoalHandler={addGoalHandler} goalInputHandler={goalInputHandler} enteredGoal={enteredGoal}/>
+      <GoalInput addGoalHandler={addGoalHandler} />
       <View style={styles.goalsContainer}>
         <Text style={{ padding: 20, fontSize: 24, color: '#ff0000' }} >List Of Goal ....</Text>
         <FlatList
           data={courseGoals}
           renderItem={(itemData) => (
-           <GoalItem title={itemData.item.text} />
+            <GoalItem title={itemData.item.text}
+              onDeleteItem={deleteGoalHandler}
+              id={itemData.item.key}
+            />
           )}
         />
         {/* <ScrollView>
@@ -46,10 +50,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     flex: 1,
   },
- 
+
   goalsContainer: {
     flex: 5
   },
- 
+
 
 });

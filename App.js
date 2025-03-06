@@ -4,7 +4,7 @@ import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
 
 export default function App() {
-  const [modalIsVisible, setModalIsVisible] = useState(true);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
   const [courseGoals, setCourseGoals] = useState([]);
 
   function startAddGoalHandler() {
@@ -62,6 +62,7 @@ export const styles = StyleSheet.create({
     paddingTop: 50,
     paddingHorizontal: 16,
     flex: 1,
+    backgroundColor: '#f7f7f7'
   },
 
   goalsContainer: {

@@ -38,7 +38,7 @@ export default function App() {
         />
       </View>
       <View style={styles.goalsContainer}>
-        <Text style={{ padding: 20, fontSize: 24, color: '#ff0000' }} >List Of Goal ....</Text>
+        <Text style={{ padding: 20, fontSize: 24, color: '#ff0000' }} >List Of Goal ...</Text>
         <FlatList
           data={courseGoals}
           renderItem={(itemData) => (
